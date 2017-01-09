@@ -3,9 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-app',
   template: `<h1>Angular2 Versus SharePointFramework</h1>
+
+            <h2>UserID: {{userId}}</h2>
+          
             {{title}}
             <div [innerHTML]="listsAsHtml"></div>
-            
+         
             `
 })
 
@@ -13,7 +16,8 @@ export class AppComponent {
   public title: string = "app that fetches all list from 0365";
   public listsAsHtml: string = "loading...";
   public lists: Array<any>;
-
+  public currentUser: string = " ";
+  public userId: string ="";
   public context: any;
 
   public constructor() {
@@ -35,11 +39,27 @@ export class AppComponent {
         }
 
       });
+
+       this._getCurrentUser().then(
+      (response) => {
+               this.currentUser= response;
+              this.userId = response.Id;
+        console.log("Current User:" ,this.currentUser);
+
+      });
   }
 
   private _getListData(): Promise<any> {
     return this.context.httpClient.get(this.context.pageContext.web.absoluteUrl + `/_api/web/lists?$filter=Hidden eq false`)
       .then((response: Response) => {
+        return response.json();
+      });
+  }
+
+    private _getCurrentUser(): Promise<any> {
+    return this.context.httpClient.get(this.context.pageContext.web.absoluteUrl + `/_api/web/currentUser`)
+      .then((response: Response) => {
+        //console.log(response);
         return response.json();
       });
   }
