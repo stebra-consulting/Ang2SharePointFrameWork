@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `<h1>Angular2 Versus SharePointFramework</h1>
 
             <h2>UserID: {{userId}}</h2>
-          
+            
             {{title}}
             
          
@@ -17,7 +17,8 @@ export class AppComponent {
   public currentUser: string = " ";
   public userId;
   public context: any;
-  public permission: string = " ";
+  public permission;
+  public isAdmin:boolean= false;
 
   public constructor() {
 
@@ -32,10 +33,13 @@ export class AppComponent {
         console.log("Current User:" ,this.currentUser);
                   this._getPermission(this.userId).then(
       (response) => {
-  this.permission=response;
-  
+        this.permission=response.value["0"].RoleTypeKind;
+ 
         console.log("Current User Info:" ,this.permission);
-
+        if(this.permission === 5){
+          this.isAdmin = true;
+          
+        }
       });
 
       });
