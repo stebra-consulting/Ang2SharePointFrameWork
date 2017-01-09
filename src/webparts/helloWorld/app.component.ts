@@ -33,7 +33,8 @@ export class AppComponent {
                   this._getPermission(this.userId).then(
       (response) => {
   this.permission=response;
-        console.log("Current User Info:" ,response);
+  
+        console.log("Current User Info:" ,this.permission);
 
       });
 
