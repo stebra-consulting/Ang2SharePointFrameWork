@@ -5,7 +5,10 @@ import { Component } from '@angular/core';
   template: `<h1>Angular2 Versus SharePointFramework</h1>
 
             <h2>UserID: {{userId}}</h2>
-            
+            <div>
+                <div [hidden]="isAdmin" class="displayInline">Admin</div>
+                <div [hidden]="isKonsult" class="displayInline">Konsult</div>
+            </div>
             {{title}}
             
          
@@ -18,45 +21,51 @@ export class AppComponent {
   public userId;
   public context: any;
   public permission;
-  public isAdmin:boolean= false;
+  public isAdmin: boolean = true;
+  public isKonsult: boolean = true;
 
   public constructor() {
 
     this.context = window['context'];
     console.log("context", this.context);
- 
 
-       this._getCurrentUser().then(
+
+    this._getCurrentUser().then(
       (response) => {
-               this.currentUser= response;
-              this.userId = response.Id;
-        console.log("Current User:" ,this.currentUser);
-                  this._getPermission(this.userId).then(
-      (response) => {
-        this.permission=response.value["0"].RoleTypeKind;
- 
-        console.log("Current User Info:" ,this.permission);
-        if(this.permission === 5){
-          this.isAdmin = true;
-          
-        }
+        this.currentUser = response;
+        this.userId = response.Id;
+        console.log("Current User:", this.currentUser);
+        this._getPermission(this.userId).then(
+          (response) => {
+            this.permission = response.value["0"].RoleTypeKind;
+
+            console.log("Current User Info:", this.permission);
+            if (this.permission === 5) {
+              this.isAdmin = false;
+
+            }
+            else {
+              this.isKonsult = false;
+            }
+
+
+          });
+
       });
 
-      });
- 
   }
 
 
-    private _getCurrentUser(): Promise<any> {
+  private _getCurrentUser(): Promise<any> {
     return this.context.httpClient.get(this.context.pageContext.web.absoluteUrl + `/_api/web/currentUser`)
       .then((response: Response) => {
         return response.json();
       });
   }
-private _getPermission(userId): Promise<any> {
- 
-  var listName= "Tidsrapport";
-  return this.context.httpClient.get(this.context.pageContext.web.absoluteUrl + `/_api/web/lists/GetByTitle('`+listName+`')/roleassignments/GetByPrincipalId('`+userId+`')/RoleDefinitionBindings/`)
+  private _getPermission(userId): Promise<any> {
+
+    var listName = "Tidsrapport";
+    return this.context.httpClient.get(this.context.pageContext.web.absoluteUrl + `/_api/web/lists/GetByTitle('` + listName + `')/roleassignments/GetByPrincipalId('` + userId + `')/RoleDefinitionBindings/`)
       .then((response: Response) => {
         return response.json();
       });
