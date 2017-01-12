@@ -19,9 +19,13 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app.module';
 //
 
+import terms from './terms/terms';
+
 import styles from './HelloWorld.module.scss';
 import * as strings from 'helloWorldStrings';
 import { IHelloWorldWebPartProps } from './IHelloWorldWebPartProps';
+
+//import * as terms from './terms/terms.txt';
 
 import MockHttpClient from './MockHttpClient';
 
@@ -45,59 +49,22 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
 
     window["_spPageContextInfoNew"] = this.context.pageContext;
     window["context"] = this.context;
+    window["context"].terms = terms;
 
     console.log("in HelloWorldWebPart,  context", context);
 
 
+
+    var client = new XMLHttpRequest();
+    client.open('GET', 'terms/terms.txt');
+    client.onreadystatechange = function() {
+      console.log("TERMS", client.responseText);
+    }
+    client.send();
+
   }
     
-    /*
-    private _renderListAsync(): void {
-    // Local environment
-    if (Environment.type === EnvironmentType.Local) {
-      this._getMockListData().then((response) => {
-        this._renderList(response.value);
-      });
-    }
-    else if (Environment.type == EnvironmentType.SharePoint || 
-              Environment.type == EnvironmentType.ClassicSharePoint) {
-      this._getListData()
-        .then((response) => {
-          this._renderList(response.value);
-        });
-    }
-  }
-
-  private _getListData(): Promise<ISPLists> {
-    return this.context.httpClient.get(this.context.pageContext.web.absoluteUrl + `/_api/web/lists?$filter=Hidden eq false`)
-      .then((response: Response) => {
-        return response.json();
-      });
-  }
-
-  private _renderList(items: ISPList[]): void {
-    let html: string = '';
-    items.forEach((item: ISPList) => {
-      html += `
-        <ul class="${styles.list}">
-            <li class="${styles.listItem}">
-                <span class="ms-font-l">${item.Title}</span>
-            </li>
-        </ul>`;
-    });
-
-    const listContainer: Element = this.domElement.querySelector('#spListContainer');
-    listContainer.innerHTML = html;
-  }
-
-  private _getMockListData(): Promise<ISPLists> {
-    return MockHttpClient.get(this.context.pageContext.web.absoluteUrl)
-      .then((data: ISPList[]) => {
-        var listData: ISPLists = { value: data };
-        return listData;
-      }) as Promise<ISPLists>;
-  }
-  */
+ 
 
   public render(): void {
     /*<div id="spListContainer" />*/

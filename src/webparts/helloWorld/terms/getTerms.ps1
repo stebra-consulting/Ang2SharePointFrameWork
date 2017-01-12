@@ -57,7 +57,7 @@ Foreach ($Group in $Groups)
             if($TermSet.Name -eq "Project")
             {
 
-                $JSON = '{'
+                $JSON = 'var terms = {'
                 
                 $JSON = $JSON + '"'+$TermSet.Name+'":{'
                 #Write-Host "      Term Set Name:"\$TermSet.Name -ForegroundColor Yellow
@@ -95,13 +95,13 @@ Foreach ($Group in $Groups)
                     #Write-Host "            " $Term.CustomProperties -ForegroundColor White
                     #Write-Host $JSON.ToString()
                 }
-                $JSON = $JSON + "}}"
+                $JSON = $JSON + "}}; export default terms;"
                 Write-Host " "
                 Write-Host " "
                 Write-Host "terms.txt:"
                 Write-Host $JSON -ForegroundColor Yellow
 
-                $path = $PSScriptRoot+"\terms.txt" 
+                $path = $PSScriptRoot+"\terms.ts" 
 
                 Write-Host $path -ForegroundColor Magenta
 
