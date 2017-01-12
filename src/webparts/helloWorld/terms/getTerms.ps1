@@ -101,7 +101,7 @@ Foreach ($Group in $Groups)
                 Write-Host "terms.txt:"
                 Write-Host $JSON -ForegroundColor Yellow
 
-                $path = $PSScriptRoot+"\terms.ts" 
+                $path = $PSScriptRoot+"\terms.txt" 
 
                 Write-Host $path -ForegroundColor Magenta
 
