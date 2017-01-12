@@ -9,20 +9,14 @@ import { Component } from '@angular/core';
                 <div [hidden]="isAdmin" class="displayInline">Admin</div>
                 <div [hidden]="isKonsult" class="displayInline">Konsult</div>
             </div>
-            {{title}}
+            {{title}},
 
-            <ul>
 
-  <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </li>
-</ul>
-          
+<div *ngFor='let term of terms'>
+   {{ term }}
+</div>
+      
+    
      `,     
  styles:[`
  
@@ -93,12 +87,26 @@ export class AppComponent {
   public permission;
   public isAdmin: boolean = true;
   public isKonsult: boolean = true;
-
+  public terms: Array<any> =[];
   public constructor() {
 
     this.context = window['context'];
-    console.log("context", this.context);
-
+    console.log(this.context.terms);
+ 
+    //var terms = [];
+    var termsJSON = this.context.terms.Project;
+    for (var key in termsJSON){
+        var attrName = key;
+         //term properties:
+        var attrValue = termsJSON[key];
+        if(termsJSON[key].isActive === true)
+        {
+          console.log("test");
+        }
+       this.terms.push(attrName);
+    }
+    console.log(this.terms);
+    
 
     this._getCurrentUser().then(
       (response) => {
