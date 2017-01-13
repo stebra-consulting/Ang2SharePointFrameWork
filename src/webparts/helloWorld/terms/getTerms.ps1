@@ -3,15 +3,15 @@
 #Read-Host "please proceed"
 
 #CHANGE THESE THREE VARIABLES
-$User = "felix.freye@stebra.se"
-$TenantURL = "https://stebra-admin.sharepoint.com"
+$User = "chro.youns@stebra.se"
+$TenantURL = "https://stebra.sharepoint.com"
 $Site = "https://stebra.sharepoint.com/sites/SD1"
 
 #Add references to SharePoint client assemblies and authenticate to Office 365 site – required for CSOM
 Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\15\ISAPI\Microsoft.SharePoint.Client.dll"
 Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\15\ISAPI\Microsoft.SharePoint.Client.Runtime.dll"
 Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\15\ISAPI\Microsoft.SharePoint.Client.Taxonomy.dll"
-#$Password = Read-Host -Prompt "Please enter your password" -AsSecureString
+$Password = Read-Host -Prompt "Please enter your password" -AsSecureString
 
 #Bind to MMS
 $Context = New-Object Microsoft.SharePoint.Client.ClientContext($Site)

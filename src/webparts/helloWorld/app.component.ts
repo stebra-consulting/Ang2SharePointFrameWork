@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 
             <h2>UserID: {{userId}}</h2>
             <div>
+                <a href="https://stebra.sharepoint.com/sites/SD1/_layouts/15/termstoremanager.aspx">TermStore</a>
                 <div [hidden]="isAdmin" class="displayInline">Admin</div>
                 <div [hidden]="isKonsult" class="displayInline">Konsult</div>
             </div>
@@ -59,6 +60,8 @@ li.dropdown {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
+
+
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
@@ -101,9 +104,9 @@ export class AppComponent {
         var attrValue = termsJSON[key];
         if(termsJSON[key].isActive === true)
         {
-          console.log("test");
+           this.terms.push(attrName);
         }
-       this.terms.push(attrName);
+      
     }
     console.log(this.terms);
     
