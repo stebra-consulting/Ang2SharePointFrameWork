@@ -55,13 +55,13 @@ ul, li {
   	list-style-type: none;
     z-index:10;
 }
-<<<<<<< HEAD
+
 .dropdown-content li {
 	padding:10px;
     border-bottom:solid 1px #b3cccc;
     position:relative;
     text-align: center;
-=======
+}
 
 
 
@@ -71,7 +71,7 @@ ul, li {
     text-decoration: none;
     display: block;
     text-align: left;
->>>>>>> fd87ba1ff43cf004597a5b52d7ca9882b5c80058
+
 }
 
 .dropdown:hover .dropdown-content {
