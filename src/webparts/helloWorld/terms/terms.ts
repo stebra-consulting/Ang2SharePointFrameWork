@@ -1,1 +1,1 @@
-var terms = {"Project":{"Absolut":{},"Google":{},"H＆M":{},"Microsoft":{},"Telia":{isActive : true},"Vega":{isActive : true}}}; export default terms;
+var terms = {"Project":{"Absolut":{isActive : true},"Google":{isActive : true},"H＆M":{},"Microsoft":{isActive : true},"Telia":{isActive : true},"Vega":{isActive : true}}}; export default terms;
