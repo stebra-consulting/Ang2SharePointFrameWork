@@ -55,13 +55,6 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
 
 
 
-    var client = new XMLHttpRequest();
-    client.open('GET', 'terms/terms.txt');
-    client.onreadystatechange = function() {
-      console.log("TERMS", client.responseText);
-    }
-    client.send();
-
   }
     
  

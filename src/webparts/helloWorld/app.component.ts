@@ -11,43 +11,37 @@ import { Component } from '@angular/core';
             </div>
             {{title}},
 
-
-<div *ngFor='let term of terms'>
-   {{ term }}
+<div class="dropdown-content">
+  <div *ngFor='let term of terms' class="dropbtn">
+    {{ term }} 
+  </div>
 </div>
+
+
+
+<br/>
+<br/>
+<div class="dropdown">
+  <button>Projects</button>
+  <ul class="dropdown-content">
+    <li *ngFor='let term of terms'>
+      {{ term }} 
+    </li>
+  </ul>
+</div>
+
       
     
      `,     
  styles:[`
- 
-    .zippy {
-      background: green;
-    }
-          
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+
+ul, li {
+  margin: 0px;
+  padding: 0px;
 }
 
-
-
-li a, .dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover, .dropdown:hover .dropbtn {
-    background-color: gre;
-       
-}
-
-li.dropdown {
+.dropdown {
+    position: relative;
     display: inline-block;
 }
 
@@ -55,28 +49,28 @@ li.dropdown {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 140px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  	list-style-type: none;
+    z-index:10;
 }
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+.dropdown-content li {
+	padding:10px;
+    border-bottom:solid 1px #b3cccc;
+    position:relative;
+    text-align: center;
 }
-
-.dropdown-content a:hover {background-color: #f1f1f1}
 
 .dropdown:hover .dropdown-content {
     display: block;
-  z-index: 10;
-    
 }
-            
-         
-      `    ]
+button {
+	min-width: 140px;
+    min-height:50px;
+    font-size:15px;
+}
+
+`]
 })
 
 export class AppComponent {
