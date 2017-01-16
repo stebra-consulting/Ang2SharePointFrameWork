@@ -12,13 +12,6 @@ import { Component } from '@angular/core';
             </div>
             {{title}},
 
-<div class="dropdown-content">
-  <div *ngFor='let term of terms' class="dropbtn">
-    {{ term }} 
-  </div>
-</div>
-
-
 
 <br/>
 <br/>

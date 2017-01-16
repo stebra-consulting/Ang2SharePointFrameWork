@@ -1,6 +1,6 @@
 {
   "port": 4321,
-  "initialPage": "https://localhost:5432/workbench",
+  "initialPage": "https://stebra.sharepoint.com/sites/sd1/_layouts/15/workbench.aspx",
   "https": true,
   "api": {
     "port": 5432,

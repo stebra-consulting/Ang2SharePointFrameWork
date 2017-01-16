@@ -3,7 +3,7 @@
 #Read-Host "please proceed"
 
 #CHANGE THESE THREE VARIABLES
-$User = "chro.youns@stebra.se"
+$User = "felix.freye@stebra.se"
 $TenantURL = "https://stebra.sharepoint.com"
 $Site = "https://stebra.sharepoint.com/sites/SD1"
 
